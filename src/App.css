@@ -1,0 +1,30 @@
+*{
+font-family: "JetBrains Mono", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+
+.main{
+    margin: auto;
+    height: 800px;
+    width: 600px;
+    background-color: rgba(133,162,175,255);
+    
+}
+
+.shadow{
+    box-shadow: 0 4px 8px -6px rgba(133,162,175,255);
+}
+
+.recompensas{
+    background-color: rgba(160,67,55,255);
+}
+
+#calendario-dias{
+    height: 550px;
+    width: 750px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
