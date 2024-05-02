@@ -276,6 +276,7 @@ function Calendario() {
         },
         
     ]
+    
     //mapeando o calendario
     const calendario = ano.map((mes,index)=>{
         if(seletor === index){

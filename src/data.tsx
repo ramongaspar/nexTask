@@ -1,5 +1,4 @@
 //ESTRUTURAS UTILIZADAS NO APP
-
 export class Elemento{
     nome:string
     pontos:string
@@ -16,7 +15,7 @@ export class Elemento{
     }
 }
 
-class Node{
+export class Node{
     chave:number
     element:Elemento
     next:Node|null
@@ -105,7 +104,7 @@ export class Tabela{
     }
 }
 
-
+/*
 // const el = new Elemento('Calistenia','5','Barras')
 // const el2 = new Elemento('Café','10','Essa recompensa garante uma xícara de café.')
 // const el3 = new Elemento('Açai','15','Essa recompensa garante um bowl de açai, com uma fruta a escolha.')
@@ -117,22 +116,46 @@ export class Tabela{
 // console.log(tabelaRecompensaa)
 // localStorage.setItem('tabelaDeRecompensa', JSON.stringify(tabelaRecompensaa))
 
+*/
 
-const tRecompensa = JSON.parse( localStorage.getItem('tabelaDeRecompensa') !) 
-const tRecuperada = new Tabela
-tRecompensa.tabela.forEach((nodeData:any) => {
-    console.log(' as ', nodeData)
-    let temp = nodeData
-    while(temp){
-        const curr = (nodeData.element)
-        const el = new Elemento(curr.nome,curr.pontos,curr.usos,curr.descricao)
-        tRecuperada.addEl(el)
-        temp = temp.next
-    }
-});
+//                                          FETCHING ITENS LOCALSTORAGE
 
-export const myPoints = parseInt(JSON.parse( localStorage.getItem('pontos') !))
+//qtd de pontos
+export const myPoints = parseInt(JSON.parse(localStorage.getItem('pontos')!))
+//historico de tarefas e recompensas
 export const history = JSON.parse(localStorage.getItem('historico')!)
-export const tabelaTarefa = new Tabela()
-export const tabelaRecompensa:Tabela = tRecuperada
+
+//tabelas de recompensas e tarefas
+const tRecompensa = JSON.parse( localStorage.getItem('tabelaDeRecompensas') !) 
+const tTarefa     = JSON.parse( localStorage.getItem('tabelaDeTarefas')     !)
+
+console.log(tRecompensa)
+
+const tRRecuperada = new Tabela
+const tTRecuperada = new Tabela
+
+//função para recuperar o formato dos dados da tabela. recuperando as funcionalidades presentes no ELEMENTO
+const recuperarTabela = (tabela:Tabela, tabelaRecuperada:Tabela)=>{
+    if(tabela){
+        tabela.tabela.forEach((nodeData:any) => {
+            console.log(' as ', nodeData)
+            let temp = nodeData
+            while(temp){
+                const curr = (nodeData.element)
+                const el = new Elemento(curr.nome,curr.pontos,curr.usos,curr.descricao)
+                tabelaRecuperada.addEl(el)
+                temp = temp.next
+            }
+        });
+    }
+}
+
+recuperarTabela(tRecompensa, tRRecuperada)
+recuperarTabela(tTarefa, tTRecuperada)
+
+
+
+
+export const tabelaTarefas:Tabela     = tTRecuperada 
+export const tabelaRecompensas:Tabela = tRRecuperada 
 

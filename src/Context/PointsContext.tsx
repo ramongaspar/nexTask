@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext } from "react";
 
 export const PointsContext = createContext({totalPontos:0,addPontos:(p:number)=>{}, subPontos:(p:number,r:string)=>{}})
 

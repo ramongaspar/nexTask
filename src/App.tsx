@@ -1,18 +1,22 @@
-import { useState } from 'react'
 import './App.css'
-import Menu from './Components/Menu'
-import {  RouterProvider, createBrowserRouter } from 'react-router-dom'
-import Rewards from './Components/Recompensas/Rewards'
-import Progresso from './Components/Tarefas/Progresso'
-import HistoricoRecompensa from './Components/Recompensas/HistoricoRecompensa'
-import { history, myPoints, tabelaRecompensa } from './data'
+import { useState } from 'react'
+import {  RouterProvider } from 'react-router-dom'
+import { router } from './Router'
 import { PointsProvider } from './Context/PointsContext'
-import Calendario from './Components/Calendario/Calendario'
+import { history, myPoints, tabelaRecompensas, tabelaTarefas } from './data'
+import { TabelasProvider } from './Context/TabelasContext'
 
-const setHistory = (r:string,u:number,t:Date)=>{
-  const data = `${r}, ${u} ${t.getDate()}/${t.getMonth() + 1}`
+const setHistory = (r:string,u:number,d:Date)=>{
+  const data = `${r}, ${u} ${d.getDate()}/${d.getMonth() + 1}`
   history.push(data)
   localStorage.setItem('historico', JSON.stringify(history))
+}
+
+const setTabelaRecompensa = () =>{
+    localStorage.setItem('tabelaDeRecompensas', JSON.stringify(tabelaRecompensas))
+}
+const setTabelaTarefa = () =>{
+    localStorage.setItem('tabelaDeTarefas', JSON.stringify(tabelaTarefas))
 }
 
 function App() {
@@ -22,50 +26,26 @@ function App() {
     setPontos(prevPontos => prevPontos + p)
     localStorage.setItem('pontos',JSON.stringify(totalPontos))
   }  
+  
   const subPontos = (p:number, r:string)=>{
     setPontos(prevPontos => prevPontos - p)
     localStorage.setItem('pontos',JSON.stringify(totalPontos))
-    const u = tabelaRecompensa.changeUso(r)
-    const t = new Date()
-    localStorage.setItem('tabelaDeRecompensa', JSON.stringify(tabelaRecompensa))
-    setHistory(r, u!, t)
+    const u = tabelaRecompensas.changeUso(r)
+    const d = new Date()
+    
+    setHistory(r, u!, d)
   }  
 
 
-  const router = createBrowserRouter([
-    {
-      path:'/',
-      element:<Menu></Menu>,
-    },
-    {
-      path:'/progresso',
-      element:<Progresso></Progresso>
-    },
-    {
-      path:'/recompensas',
-      element:<Rewards></Rewards>
-    },
-    {
-      path:'/historico',
-      element:<HistoricoRecompensa></HistoricoRecompensa>
-    },
-    {
-      path:'/calendario',
-      element:<Calendario></Calendario>
-    },
-  ])
-
-
-
-
   return (
-    
     <div className='w-screen h-screen flex justify-center items-center'>
       <div id='main' className='main'>
        
         <div className='w-full h-full'>
           <PointsProvider value={{totalPontos: totalPontos, addPontos, subPontos}}>
-            <RouterProvider router={router}></RouterProvider>
+            <TabelasProvider value={{tabelaRecompensas:tabelaRecompensas,tabelaTarefas:tabelaTarefas,setTabelaRecompensa,setTabelaTarefa}}>
+              <RouterProvider router={router}></RouterProvider>
+            </TabelasProvider>
           </PointsProvider>
         </div>
 
