@@ -1,8 +1,12 @@
 
-// aqui é possivel checar as tarefas realizadas, e os pontos conquistados através da interface de calendário
+//Consultar progresso / Historico de tarefas realizadas
+
 function Progresso() {
+  const taskHistory:{}[] | null = null
   return (
-    <div>Calendario</div>
+    <div>
+      {taskHistory}
+    </div>
   )
 }
 

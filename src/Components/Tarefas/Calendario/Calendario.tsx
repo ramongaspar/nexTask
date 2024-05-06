@@ -1,299 +1,44 @@
-import { useState } from 'react'
-import Mes from './Mes'
+//Componente principal na exibição do calendário.
+
+import { useContext, useState } from 'react'
+import MesEl from './MesEl'
+import { CalendarioContext } from '../../../Context/CalendarioContext'
+
 
 function Calendario() {
-    //interatividade seleção mês
+    //Interatividade / Exibição da seleção do mês
+    const {calendario} = useContext(CalendarioContext)
     const [seletor, setSeletor] = useState(0)
     const handleBackButton = ()=>{
         if(seletor === 0){
             setSeletor(11)
-        }
-        setSeletor(prev=>prev-1)
+        }else
+            setSeletor(prev=>prev-1)
     }
     const handleForwardButton = ()=>{
         if(seletor === 11){
             setSeletor(0)
-        }
-        setSeletor(prev=>prev+1)
+        }else
+            setSeletor(prev=>prev+1)
     }
 
-
-    const ano = [
-        {  
-            mes:'janeiro',
-            dias:[
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                }
-            ]
-        },
-        {
-            mes:'fevereiro',
-            dias:[
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                },
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    feita:false,
-                    comentario:''
-                }
-            ]
-        },
-        
-    ]
-    
-    //mapeando o calendario
-    const calendario = ano.map((mes,index)=>{
+    //Gerando elementos para cada mês / Array com 'Meses'
+    const calendarioEl = calendario.meses.map((mes,index)=>{
         if(seletor === index){
             return(    
-            <div id='calendario' className='flex flex-col items-center justify-center w-full h-full pb-4'>
-                <h2 className='w-4/5 flex justify-between text-3xl pb-1 border-b'><span onClick={handleBackButton}>{'<'}</span>{mes.mes}<span onClick={handleForwardButton}>{'>'}</span></h2>
-                <div className='flex w-11/12 h-4/5 p-2 mt-4'>
-                    <Mes meses={mes}></Mes>
+                <div key={index} id='calendario' className='flex flex-col items-center justify-between w-full h-5/6  px-4'>
+                    <h2 className='w-4/5 flex justify-between text-3xl pb-1 border-b'><span onClick={handleBackButton}>{'<'}</span>{mes.nome}<span onClick={handleForwardButton}>{'>'}</span></h2>
+                    <div className='flex w-full h-5/6 mt-4'>
+                        <MesEl mes={mes}></MesEl>
+                    </div>
                 </div>
-            </div>
             )
         }
     })
 
   return (
-    <div className='w-full h-full'>
-     {calendario}
+    <div className='w-full h-full flex items-center'>
+        {calendarioEl}
     </div>
   )
 }

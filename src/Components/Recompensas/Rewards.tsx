@@ -1,16 +1,21 @@
-import { useContext, useEffect, useState } from 'react'
+//Lista e permite o resgate de recompensas
+
+import { useContext } from 'react'
 import Reward from './Reward.js'
 import { PointsContext } from '../../Context/PointsContext.js'
 import { Link } from 'react-router-dom'
 import { TabelasContext } from '../../Context/TabelasContext.js'
 
 function Rewards() {
-  //EDITAR TABELA CMO PESQUISA HASH PARA ADD CONTADOR EM RECOMPENSAS
+
+  //Contexts
   const {tabelaRecompensas} = useContext(TabelasContext)
   const {totalPontos} = useContext(PointsContext)
-  console.log(tabelaRecompensas)
+
+  //Keys for mapping
   const myRewards: any[] = tabelaRecompensas.listItems()
-  useEffect(()=>{}, myRewards)
+ 
+
   //DOM
   const rewardListEl = myRewards.map((r)=>{
     return(

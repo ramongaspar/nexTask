@@ -1,10 +1,17 @@
-import  { useContext, useState } from 'react'
+//Componente para cada elemento Recompensa ser exibido.
+
+import { useContext, useState } from 'react'
+import { PointsContext } from '../../Context/PointsContext'
 
 function Reward({nome, descricao, pontos}:{nome:string,descricao:string,pontos:string}){ 
+
+    //Contextos
     const {totalPontos, subPontos} = useContext(PointsContext)
+    //Estado para habilitar exibição completa da recompensa
     const [isDisplay, setIsDisplay] = useState(false) 
     const display = isDisplay ? 'flex' : 'none'   
 
+    //Calcúlo de pontos / Resgate da recompensa
     const handleGetReward =()=>{
         const p = parseInt(pontos) 
         if(totalPontos - p < 0) return console.log('Precisa de mais')
@@ -29,6 +36,6 @@ function Reward({nome, descricao, pontos}:{nome:string,descricao:string,pontos:s
         </div>
     )
 }
-import { PointsContext } from '../../Context/PointsContext'
+
 
 export default Reward

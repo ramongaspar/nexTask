@@ -1,3 +1,4 @@
+//Histórico de recompensas resgastadas
 
 import {history} from '../../data'
 

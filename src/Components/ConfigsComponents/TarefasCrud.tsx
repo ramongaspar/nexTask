@@ -1,4 +1,6 @@
-import React, { useContext, useState } from 'react'
+//Formulário para adicionar novas Tarefas/Recompensas
+
+import { useContext, useState } from 'react'
 import { Elemento } from '../../data'
 import { TabelasContext } from '../../Context/TabelasContext'
 

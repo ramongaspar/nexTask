@@ -1,22 +1,10 @@
+//Contexto contendo o objeto calendário e suas funções
+
 import { createContext,} from "react";
-import { Elemento } from "../data";
+import anoPresente from "../dataCaledario";
 
 export const CalendarioContext = createContext(
-    [   
-        {  
-            mes:'',
-            dias:[
-                {
-                    nome:'',
-                    pontos:'',
-                    descricao:'',
-                    completo:false,
-                    comentario:'',
-                    tarefas:[Elemento,],
-                },
-            ],
-        },
-    ]
+   {calendario:anoPresente}
 )
 
 export const CalendarioProvider = CalendarioContext.Provider

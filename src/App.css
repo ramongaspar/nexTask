@@ -22,9 +22,10 @@ font-family: "JetBrains Mono", monospace;
 }
 
 #calendario-dias{
-    height: 550px;
-    width: 750px;
+    width: 100%;
+    height: 77%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 5px;
 }
