@@ -6,9 +6,11 @@ import { CalendarioContext } from '../../../Context/CalendarioContext'
 
 
 function Calendario() {
-    //Interatividade / Exibição da seleção do mês
     const {calendario} = useContext(CalendarioContext)
-    const [seletor, setSeletor] = useState(0)
+    //Interatividade / Exibição da seleção do mês
+    const d = new Date()
+    const dateMonth = d.getMonth()
+    const [seletor, setSeletor] = useState(dateMonth)
     const handleBackButton = ()=>{
         if(seletor === 0){
             setSeletor(11)
@@ -26,9 +28,13 @@ function Calendario() {
     const calendarioEl = calendario.meses.map((mes,index)=>{
         if(seletor === index){
             return(    
-                <div key={index} id='calendario' className='flex flex-col items-center justify-between w-full h-5/6  px-4'>
-                    <h2 className='w-4/5 flex justify-between text-3xl pb-1 border-b'><span onClick={handleBackButton}>{'<'}</span>{mes.nome}<span onClick={handleForwardButton}>{'>'}</span></h2>
-                    <div className='flex w-full h-5/6 mt-4'>
+                <div key={index} id='calendario' className='flex flex-col items-center justify-center w-full h-full gap-4 px-1 mt-4'>
+                    <h2 className='w-2/5 flex justify-between text-3xl border-b'>
+                        <span className='text-xl pt-2' onClick={handleBackButton}>{'<'}</span>
+                            {mes.nome}
+                        <span className='text-xl pt-2' onClick={handleForwardButton}>{'>'}</span>
+                    </h2>
+                    <div className='flex w-full h-5/6'>
                         <MesEl mes={mes}></MesEl>
                     </div>
                 </div>

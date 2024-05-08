@@ -32,6 +32,7 @@ function App() {
   //Atribuindo pontos recebidos do banco a um estado e Criando elementos do contexto de Pontos
   const [totalPontos,setPontos] = useState(myPoints)
   const [calendario, setCal] = useState(anoPresente)
+
   const addPontos = (p:number)=>{
     setPontos(prevPontos => prevPontos + p)
     localStorage.setItem('pontos',JSON.stringify(totalPontos))
@@ -44,22 +45,23 @@ function App() {
     
     setHistory(r, u!, d)
   }  
-
+  const editCalendario = ()=>{}
 
   return (
     <div className='w-screen h-screen flex justify-center items-center'>
       <div id='main' className='main'>
        
         <div className='w-full h-full'>
-          <CalendarioProvider value={{calendario}}>
+          <CalendarioProvider value={{calendario, editCalendario}}>
           <PointsProvider value={{ totalPontos, addPontos, subPontos}}>
-            <TabelasProvider value={{tabelaRecompensas:tabelaRecompensas,tabelaTarefas:tabelaTarefas,setTabelaRecompensa,setTabelaTarefa}}>
-              <RouterProvider router={router}></RouterProvider>
-            </TabelasProvider>
+          <TabelasProvider value={{tabelaRecompensas:tabelaRecompensas,tabelaTarefas:tabelaTarefas,setTabelaRecompensa,setTabelaTarefa}}>
+            <RouterProvider router={router}></RouterProvider>
+            
+          </TabelasProvider>
           </PointsProvider>
           </CalendarioProvider>
+       
         </div>
-
       </div>
     </div>
   )

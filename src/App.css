@@ -28,4 +28,27 @@ font-family: "JetBrains Mono", monospace;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     row-gap: 5px;
+    column-gap: 1.5px;
+}
+
+.button-alike{
+    padding: 0.5rem 1rem;
+    border: 1px solid black;
+    border-radius: 25px;
+    
+}
+.button-alike:hover{
+    cursor: pointer;
+    background-color: rgba(160,190,205,255)
+    
+}
+
+.tasks-grid{
+    background-color: rgba(160,190,205,255);
+    box-shadow: 0 4px 8px -6px rgba(133,162,175,255);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 0.2rem;
+    column-gap: 0.5rem;
 }

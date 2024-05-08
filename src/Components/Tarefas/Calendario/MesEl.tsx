@@ -6,7 +6,7 @@ function MesEl({mes}:{mes:Mes}) {
   const {nome, dias} = mes 
 
   //Array com objetos Dia / Gerando componentes Dias
-  const d = dias.map((dia:{}, index:number) =>{
+  const d = dias.map((dia:{nome:string}, index:number) =>{
       return(
         <DiasEl key={index.toString()+nome} mes={nome} dia={dia} idx={index}></DiasEl>
     )

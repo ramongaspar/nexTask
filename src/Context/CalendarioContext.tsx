@@ -4,7 +4,7 @@ import { createContext,} from "react";
 import anoPresente from "../dataCaledario";
 
 export const CalendarioContext = createContext(
-   {calendario:anoPresente}
+   {calendario:anoPresente,editCalendario:()=>{}}
 )
 
 export const CalendarioProvider = CalendarioContext.Provider

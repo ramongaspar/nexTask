@@ -64,7 +64,7 @@ export class Tabela{
     }
     listItems(){
         const temp = this.tabela
-        const items: {}[] = []
+        const items: {nome:string, pontos:string, usos:number, descricao:string}[] = []
         let node;
         for (let i = 0; i < 28; i++){
             node = temp[i]
@@ -115,10 +115,10 @@ const tTarefa     = JSON.parse( localStorage.getItem('tabelaDeTarefas')     !)
     //Recuperando propriedades dos elementos na tabela
 const tRRecuperada = new Tabela
 const tTRecuperada = new Tabela
+
 const recuperarTabela = (tabela:Tabela, tabelaRecuperada:Tabela)=>{
     if(tabela){
         tabela.tabela.forEach((nodeData:any) => {
-            console.log(' as ', nodeData)
             let temp = nodeData
             while(temp){
                 const curr = (nodeData.element)
@@ -136,266 +136,9 @@ recuperarTabela(tTarefa, tTRecuperada)
 
 //                                          CRIANDO REFERÊNCIAS
 
+console.log(Object.getPrototypeOf(tTRecuperada))
+
 //Tabelas
 export const tabelaTarefas:Tabela     = tTRecuperada 
 export const tabelaRecompensas:Tabela = tRRecuperada 
-//Calendário
-export const ano = [
-    {  
-        mes:'janeiro',
-        dias:[
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            }
-        ]
-    },
-    {
-        mes:'fevereiro',
-        dias:[
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            },
-            {
-                nome:'',
-                pontos:'',
-                descricao:'',
-                feita:false,
-                comentario:''
-            }
-        ]
-    },
-    
-]
 
