@@ -20,7 +20,7 @@ function Menu() {
       <section id='properties-section' className="w-11/12 mx-auto pt-4 text-xl flex justify-between items-center border-b ">
         <h2 className="">{date}</h2>
         
-        <h2 className="button-alike "><Link to={'/customizar'}> Editar </Link></h2>
+        <h2 className="button-alike border-none mb-1"><Link to={'/customizar'}> <img className="w-6" src="src/assets/images/settings.png"></img> </Link></h2>
       </section>
 
       <section id="current-day-section" className="h-3/6 shadow" >

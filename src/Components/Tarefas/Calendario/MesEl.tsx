@@ -3,6 +3,7 @@ import { Mes } from '../../../dataCaledario'
 import DiasEl from './DiasEl'
 
 function MesEl({mes}:{mes:Mes}) {
+  
   const {nome, dias} = mes 
 
   //Array com objetos Dia / Gerando componentes Dias

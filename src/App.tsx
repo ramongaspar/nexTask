@@ -2,12 +2,12 @@
 
 import './App.css'
 import { useState } from 'react'
-import {  RouterProvider } from 'react-router-dom'
+import {  RouterProvider, json } from 'react-router-dom'
 import { router } from './Router'
 import { PointsProvider } from './Context/PointsContext'
 import { history, myPoints, tabelaRecompensas, tabelaTarefas } from './data'
 import { TabelasProvider } from './Context/TabelasContext'
-import anoPresente from './dataCaledario'
+import anoPresente, { Dia } from './dataCaledario'
 import { CalendarioProvider } from './Context/CalendarioContext'
 
 
@@ -27,11 +27,13 @@ const setTabelaTarefa = () =>{
     localStorage.setItem('tabelaDeTarefas', JSON.stringify(tabelaTarefas))
 }
 
+
 function App() {
   
   //Atribuindo pontos recebidos do banco a um estado e Criando elementos do contexto de Pontos
   const [totalPontos,setPontos] = useState(myPoints)
   const [calendario, setCal] = useState(anoPresente)
+  console.log(calendario)
 
   const addPontos = (p:number)=>{
     setPontos(prevPontos => prevPontos + p)
@@ -45,8 +47,21 @@ function App() {
     
     setHistory(r, u!, d)
   }  
-  const editCalendario = ()=>{}
-
+  const editCalendario = (dia:Dia, mes:string, indexDia:number)=>{
+    const meses = anoPresente.meses
+    for(let i=0; i<12;i++){
+      if (meses[i].nome === mes){
+        for(let y=0;y<meses[i].dias.length;y++){
+          if (y === indexDia){
+            meses[i].dias[y] = dia
+          }
+        }
+      }
+    }
+    anoPresente.meses = meses
+    localStorage.setItem('calendario',JSON.stringify(anoPresente))
+    setCal(calendario)
+}
   return (
     <div className='w-screen h-screen flex justify-center items-center'>
       <div id='main' className='main'>

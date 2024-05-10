@@ -41,7 +41,14 @@ export class Dia{
             if (i===9){return console.log('LOTOU')}
         }
         this.tarefas[i] = t
-
+    }
+    getTotalDayPoints(){
+        const pontos:number[] = this.tarefas.map((t)=>{ 
+            if(!t.completa) return parseInt(t.pontos) 
+            else return 0 
+        })
+        const totalPoints = pontos.reduce((acc,ponto)=>   acc + ponto, 0)
+        return totalPoints
     }
 }
 
@@ -120,7 +127,7 @@ export class Calendario {
 // anoPresente.generateDays(0, 0, dias)
 // console.log(anoPresente)
 
-
+// localStorage.setItem('calendario', JSON.stringify(anoPresente))
 const anoPresente = JSON.parse(localStorage.getItem('calendario') !)
 const calendarioRecuperado = new Calendario
 const recuperarCalendario = (calendario:Calendario, calendarioRecuperado:Calendario)=>{
@@ -152,13 +159,8 @@ const recuperarCalendario = (calendario:Calendario, calendarioRecuperado:Calenda
 recuperarCalendario(anoPresente, calendarioRecuperado)
 
 
-console.log(anoPresente)
+
 console.log(calendarioRecuperado)
 export default calendarioRecuperado
-// const janeiro = (n, m) =>{
-//     for(let i=n, i < m.length; i+=7){
-//         m.nome = 'Segunda'
-//     }
-// }
 
 
