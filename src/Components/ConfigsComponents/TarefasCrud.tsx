@@ -3,6 +3,7 @@
 import { useContext, useState } from 'react'
 import { Elemento } from '../../data'
 import { TabelasContext } from '../../Context/TabelasContext'
+import { Link } from 'react-router-dom'
 
 
 function TarefasCrud() {
@@ -37,7 +38,8 @@ function TarefasCrud() {
     }
  
     return (
-        <div className='h-4/5 w-full flex flex-col items-center justify-evenly '>
+        <div className='h-4/5 w-full flex flex-col items-center justify-evenly 'style={{position:'relative'}}>
+            <Link to={'/'} className=' top-5 left-5' style={{position:'absolute'}}>back</Link>
             <div className='w-full flex justify-evenly items-center text-3xl'>
                 <h2 style={!tOR ? {backgroundColor:'', boxShadow:'0px 0px 8px 8px white'}:{}} className='border rounded-lg py-2 px-1' onClick={()=>setTOR(false)} >Task</h2>
                 <h2 style={tOR ? {backgroundColor:'', boxShadow:'0px 0px 8px 8px white'}:{}} className='border rounded-lg py-2 px-1' onClick={()=>setTOR(true)} >Reward</h2>

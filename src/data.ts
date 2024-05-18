@@ -40,7 +40,7 @@ export class Tabela{
         const newNode = new Node(hash, el, null)
         if(!this.tabela[hash]){
             this.tabela[hash] = newNode
-            return console.log('Adicionado', newNode)
+            return 
         }
         else{
             let temp = this.tabela[hash]
@@ -48,7 +48,7 @@ export class Tabela{
                 temp = temp.next
             }
             temp.next = newNode
-            return console.log('Adicionado', newNode)
+            return 
         }
     }
     getEl(elemento:string){
@@ -136,7 +136,7 @@ recuperarTabela(tTarefa, tTRecuperada)
 
 //                                          CRIANDO REFERÊNCIAS
 
-console.log(Object.getPrototypeOf(tTRecuperada))
+
 
 //Tabelas
 export const tabelaTarefas:Tabela     = tTRecuperada 

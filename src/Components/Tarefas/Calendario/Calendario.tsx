@@ -3,11 +3,12 @@
 import { useContext, useState } from 'react'
 import MesEl from './MesEl'
 import { CalendarioContext } from '../../../Context/CalendarioContext'
+import { Link } from 'react-router-dom'
 
 
 function Calendario() {
     const {calendario} = useContext(CalendarioContext)
-    
+    const [cal, setCal] = useState(calendario)
     //Interatividade / Exibição da seleção do mês
    
     const dateMonth = new Date().getMonth()
@@ -30,7 +31,7 @@ function Calendario() {
 
    
     //Gerando elementos para cada mês / Array com 'Meses'
-    const calendarioEl = calendario.meses.map((mes,index)=>{
+    const calendarioEl = cal.meses.map((mes,index)=>{
         if(seletor === index){
             return(    
                 <div key={index} id='calendario' className='flex flex-col items-center justify-center w-full h-full gap-4 px-1 mt-4'>
@@ -39,15 +40,16 @@ function Calendario() {
                             {mes.nome}
                         <span className='text-xl pt-2 hover:cursor-pointer' onClick={handleForwardButton}>{'>'}</span>
                     </h2>
-                    <div className='flex w-full h-5/6'>
-                        <MesEl mes={mes}></MesEl>
+                    <div  className='flex w-full h-5/6'>
+                        <MesEl idx={index} mes={mes}></MesEl>
                     </div>
                 </div>
             )
         }
     })
     return (
-        <div className='w-full h-full flex items-center'>
+        <div className='w-full h-full flex items-center' style={{position:'relative'}}>
+            <Link to={'/'} className=' top-5 left-5' style={{position:'absolute'}}>back</Link>
             {calendarioEl}
         </div>
     )  

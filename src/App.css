@@ -27,7 +27,7 @@ font-family: "JetBrains Mono", monospace;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    row-gap: 5px;
+    row-gap: 1.5px;
     column-gap: 1.5px;
 }
 

@@ -33,7 +33,6 @@ function App() {
   //Atribuindo pontos recebidos do banco a um estado e Criando elementos do contexto de Pontos
   const [totalPontos,setPontos] = useState(myPoints)
   const [calendario, setCal] = useState(anoPresente)
-  console.log(calendario)
 
   const addPontos = (p:number)=>{
     setPontos(prevPontos => prevPontos + p)
@@ -44,10 +43,10 @@ function App() {
     localStorage.setItem('pontos',JSON.stringify(totalPontos))
     const u = tabelaRecompensas.changeUso(r)
     const d = new Date()
-    
     setHistory(r, u!, d)
   }  
   const editCalendario = (dia:Dia, mes:string, indexDia:number)=>{
+    console.log(dia, mes, indexDia)
     const meses = anoPresente.meses
     for(let i=0; i<12;i++){
       if (meses[i].nome === mes){
@@ -60,8 +59,8 @@ function App() {
     }
     anoPresente.meses = meses
     localStorage.setItem('calendario',JSON.stringify(anoPresente))
-    setCal(calendario)
-}
+    setCal(anoPresente)
+  }
   return (
     <div className='w-screen h-screen flex justify-center items-center'>
       <div id='main' className='main'>

@@ -25,7 +25,10 @@ function Rewards() {
 
   
   return (
-      <div className='w-full h-full flex flex-col items-center gap-2 p-2 recompensas'>
+      <div className='w-full h-full flex flex-col items-center gap-2 p-2 recompensas' style={{position:'relative'}}>
+
+        <Link to={'/'} className=' top-5 left-5' style={{position:'absolute'}}>back</Link>
+        
         <div className='flex w-4/5 mb-4'>
           <img className='w-2/4' src='../src/assets/images/recompensa.jpg'></img>
           <div className='flex flex-col w-1/2'>
@@ -34,7 +37,7 @@ function Rewards() {
           </div>
         </div>
         {rewardListEl}
-        <Link className=' self-start ' to={'/'}>Aq</Link>
+        
       </div>
       
   )
