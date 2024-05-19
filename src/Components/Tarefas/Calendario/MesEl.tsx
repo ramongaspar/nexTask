@@ -1,5 +1,5 @@
 //Renderiza em formato de calendário, um grid contendo todos seus dias
-import { Mes } from '../../../dataCaledario'
+import { Dia, Mes } from '../../../dataCaledario'
 import DiasEl from './DiasEl'
 
 function MesEl({mes, idx}:{mes:Mes, idx:number}) {
@@ -7,7 +7,7 @@ function MesEl({mes, idx}:{mes:Mes, idx:number}) {
   const {nome, dias} = mes 
 
   //Array com objetos Dia / Gerando componentes Dias
-  const d = dias.map((dia:{nome:string}, index:number) =>{
+  const d = dias.map((dia:Dia, index:number) =>{
       return(
         <DiasEl mesidx = {idx} key={index.toString()+nome} mes={nome} dia={dia} idx={index}></DiasEl>
     )

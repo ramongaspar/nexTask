@@ -19,7 +19,7 @@ function Reward({nome, descricao, pontos}:{nome:string,descricao:string,pontos:s
     }
 
     return (
-        <div  className='py-2 w-9/12 bg-slate-300'>
+        <div  className='py-2 w-9/12 recompensa'>
             <div  className='flex flex-col text-left'>
                 <div onClick={()=>{setIsDisplay(!isDisplay)}}>
                     <h2 className='pl-8 text-xl mb-1'>{nome}</h2>

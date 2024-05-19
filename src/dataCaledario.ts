@@ -5,19 +5,18 @@ export class Tarefa{
     pontos:string
     completa:boolean
     descricao:string
-    constructor(nome:string, pontos:string, descricao:string){
+    constructor(nome:string, pontos:string, descricao:string, completa:boolean =false){
         this.nome = nome 
         this.pontos = pontos
-        this.completa = false
+        this.completa = completa
         this.descricao = descricao
     }
     setCompleta(){
-        this.completa = !this.completa
+        this.completa = true
     }
     setDescricao(descricao:string){
         this.descricao = descricao
     }
-    
 }
 
 export class Dia{
@@ -50,6 +49,26 @@ export class Dia{
         const totalPoints = pontos.reduce((acc,ponto)=>   acc + ponto, 0)
         return totalPoints
     }
+    setStatus(){
+        if (!this.tarefas.length) {
+            this.status = 'nada'
+            return true
+        }
+        let status
+        const totalTarefas = this.tarefas.filter((t) => { if(t.nome) return t })
+        const concluidas = this.tarefas.filter((t)=>{ if (t.completa) return t })
+        const tC = concluidas.length | 0
+        const relacao = totalTarefas.length % tC
+        console.log(relacao)
+        if (relacao === 0){
+            status = 'concluido'
+        }else if(relacao <= totalTarefas.length/2){
+            status = 'incompleto'
+        }else{
+            status = 'nada'
+        }
+        this.status = status
+    }
 }
 
 export class Mes{
@@ -79,7 +98,6 @@ export class Calendario {
         this.ano = ano
         this.meses = new Array(12) 
     }
-    //
     createMonths(meses:string[]){
        for(let i=0; i<meses.length;i++){
         let m:Mes
@@ -99,7 +117,6 @@ export class Calendario {
         this.meses[i] = m
        }
     }
-    //
     generateDays(mesRef:number = 0, refDia:number, dias:string[]):any{
         if(mesRef === 12){
             return 'Completo.'
@@ -141,10 +158,9 @@ const recuperarCalendario = (calendario:Calendario, calendarioRecuperado:Calenda
                     //recompondo tarefas
                     for(let z = 0; z<10;z++){
                         if(dia.tarefas[z]){
-                            const tarefa = new Tarefa(dia.tarefas[z].nome,dia.tarefas[z].pontos,dia.tarefas[z].descricao)
+                            const tarefa = new Tarefa(dia.tarefas[z].nome,dia.tarefas[z].pontos,dia.tarefas[z].descricao,dia.tarefas[z].completa)
                             dia.tarefas[z] = tarefa
                         }
-                        
                         const d = new Dia(dia.nome,dia.tarefas,dia.comentario,dia.status)
                         calendario.meses[i].dias[y] = d
                     }

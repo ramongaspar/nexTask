@@ -34,16 +34,18 @@ function AddDailyTask(
     e.preventDefault()
     const t = new Tarefa(task.nome, task.pontos, task.descricao)
     d(!display)
-    dia.addTarefa(t)
-    editCalendario(dia, mes, index)
-    aux(dia)
+    const auxDay = new Dia(dia.nome,dia.tarefas,dia.comentario,dia.status)
+    auxDay.addTarefa(t)
+    editCalendario(auxDay, mes, index)
+    aux(auxDay)
   }
   const handleTarefaAdd = (t:{nome:string,pontos:string,descricao:string})=>{
     const tarefa = new Tarefa(t.nome, t.pontos, t.descricao)
     d(!display)
-    dia.addTarefa(tarefa)
-    editCalendario(dia, mes, index)
-    aux(dia)
+    const auxDay = new Dia(dia.nome,dia.tarefas,dia.comentario,dia.status)
+    auxDay.addTarefa(tarefa)
+    editCalendario(auxDay, mes, index)
+    aux(auxDay)
   }
   
   return (

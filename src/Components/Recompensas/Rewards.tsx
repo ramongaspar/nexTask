@@ -30,11 +30,11 @@ function Rewards() {
         <Link to={'/'} className=' top-5 left-5' style={{position:'absolute'}}>back</Link>
         
         <div className='flex w-4/5 mb-4'>
-          <img className='w-2/4' src='../src/assets/images/recompensa.jpg'></img>
           <div className='flex flex-col w-1/2'>
             <div className='h-1/2'></div>
             <h2 className='h-1/2 w-full pb-4 flex items-end justify-center text-4xl'>{totalPontos}</h2>
           </div>
+          
         </div>
         {rewardListEl}
         
