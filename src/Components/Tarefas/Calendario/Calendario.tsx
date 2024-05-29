@@ -4,6 +4,8 @@ import { useContext, useState } from 'react'
 import MesEl from './MesEl'
 import { CalendarioContext } from '../../../Context/CalendarioContext'
 import { Link } from 'react-router-dom'
+import Back from '../../BackButtom'
+import BackButtom from '../../BackButtom'
 
 
 function Calendario() {
@@ -34,13 +36,13 @@ function Calendario() {
     const calendarioEl = cal.meses.map((mes,index)=>{
         if(seletor === index){
             return(    
-                <div key={index} id='calendario' className='flex flex-col items-center justify-center w-full h-full gap-4 px-1 mt-4'>
-                    <h2 className='w-2/5 flex justify-between text-3xl border-b'>
+                <div key={index} id='calendario' className='flex flex-col items-center justify-center w-full h-full gap-4 px-1 mt-1'>
+                    <h2 className='calendario-mes-titulo'>
                         <span className='text-xl pt-2 hover:cursor-pointer' onClick={handleBackButton}>{'<'}</span>
                             {mes.nome}
                         <span className='text-xl pt-2 hover:cursor-pointer' onClick={handleForwardButton}>{'>'}</span>
                     </h2>
-                    <div  className='flex w-full h-5/6'>
+                    <div  className='flex w-full h-5/6 mt-2'>
                         <MesEl idx={index} mes={mes}></MesEl>
                     </div>
                 </div>
@@ -48,9 +50,12 @@ function Calendario() {
         }
     })
     return (
-        <div className='w-full h-full flex items-center' style={{position:'relative'}}>
-            <Link to={'/'} className=' top-5 left-5' style={{position:'absolute'}}>back</Link>
-            {calendarioEl}
+        <div className='w-full h-full flex flex-col items-center' style={{position:'relative'}}>
+            <BackButtom></BackButtom>
+            <div className='w-full h-full'>
+                {calendarioEl}
+            </div>
+            <h2 style={{position:'absolute'}} className=" bottom-12 text-2xl button-alike h-20 w-11/12 rounded-lg flex items-center justify-center" ><Link to={'/progresso'}> Progresso </Link></h2>
         </div>
     )  
 }

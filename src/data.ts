@@ -12,10 +12,16 @@ export class Elemento{
         this.usos = usos
         this.descricao = descricao
     }
+    editElemento(nome:string,pontos:string,descricao:string){
+        this.nome = nome 
+        this.pontos = pontos
+        this.descricao = descricao
+    }
     addUso():void{
         this.usos++
     }
 }
+
 export class Node{
     chave:number
     element:Elemento
@@ -26,6 +32,7 @@ export class Node{
         this.next = next
     }
 }
+
 export class Tabela{
     tabela:Node[]|[]
     constructor(t=null){
@@ -64,23 +71,42 @@ export class Tabela{
     }
     listItems(){
         const temp = this.tabela
-        const items: {nome:string, pontos:string, usos:number, descricao:string}[] = []
+        const items: Elemento[] = []
         let node;
         for (let i = 0; i < 28; i++){
             node = temp[i]
             while (node){
-                let curr = node.element
-                let item = {
-                    nome:curr.nome,
-                    pontos:curr.pontos,
-                    usos:curr.usos,
-                    descricao:curr.descricao
-                }
-                items.push(item)
+                items.push(node.element)
                 node = node.next
             }
         }
         return items
+    }
+    deleteItem(item:Elemento){
+        const hash = this.hashFunction(item.nome)
+        let temp:Node|null = this.tabela[hash]
+        let nextNode
+        if(!temp.next){
+            console.log('hre')
+            if(temp.element.nome === item.nome){
+                this.tabela[hash] = null!
+            }
+        }
+        while(temp){
+            if(temp.next){
+                nextNode = temp.next
+                const currEl = nextNode.element
+                if(currEl.nome === item.nome){
+                    temp.next = temp.next.next;
+                    nextNode = null;
+                    return 'Excluido ' + currEl.nome;
+                }
+                temp = temp.next
+            }else{
+                 return 'Not in the list'     
+            }
+        }
+
     }
     changeUso(nome:string){
         const hash = this.hashFunction(nome)
@@ -99,7 +125,6 @@ export class Tabela{
             temp = temp.next
         }
         return usos
-
     }
 }
 
@@ -142,3 +167,19 @@ recuperarTabela(tTarefa, tTRecuperada)
 export const tabelaTarefas:Tabela     = tTRecuperada 
 export const tabelaRecompensas:Tabela = tRRecuperada 
 
+
+/*
+const tarefa2ponto0 = {
+    nome:'',
+    grupo:'',
+    dificuldade:'',
+    pontos:'',
+}
+
+const grupos = {
+    estudo:['computação','taro'],
+    exercicio:['corrida','surf'],
+    trabalho:['doméstico','externo'],
+    cozinha:['']
+}
+*/

@@ -55,8 +55,16 @@ export class Dia{
             return true
         }
         let status
-        const totalTarefas = this.tarefas.filter((t) => { if(t.nome) return t })
-        const concluidas = this.tarefas.filter((t)=>{ if (t.completa) return t })
+        const totalTarefas = this.tarefas.filter((t) => { 
+            if(t){
+                if(t.nome) return t 
+            }
+        })
+        const concluidas = this.tarefas.filter((t)=>{  
+            if(t){
+                if(t.completa) return t 
+            }
+        })
         const tC = concluidas.length | 0
         const relacao = totalTarefas.length % tC
         console.log(relacao)

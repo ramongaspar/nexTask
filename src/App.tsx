@@ -2,10 +2,10 @@
 
 import './App.css'
 import { useState } from 'react'
-import {  RouterProvider, json } from 'react-router-dom'
+import {  RouterProvider, } from 'react-router-dom'
 import { router } from './Router'
 import { PointsProvider } from './Context/PointsContext'
-import { history, myPoints, tabelaRecompensas, tabelaTarefas } from './data'
+import { Tabela, history, myPoints, tabelaRecompensas, tabelaTarefas } from './data'
 import { TabelasProvider } from './Context/TabelasContext'
 import anoPresente, { Dia } from './dataCaledario'
 import { CalendarioProvider } from './Context/CalendarioContext'
@@ -20,13 +20,12 @@ const setHistory = (r:string,u:number,d:Date)=>{
   localStorage.setItem('historico', JSON.stringify(history))
 }
 //          Upload de dados p/Tabelas em Local storage
-const setTabelaRecompensa = () =>{
-    localStorage.setItem('tabelaDeRecompensas', JSON.stringify(tabelaRecompensas))
+const setTabelaRecompensa = (tabela:Tabela) =>{
+    localStorage.setItem('tabelaDeRecompensas', JSON.stringify(tabela))
 }
-const setTabelaTarefa = () =>{
-    localStorage.setItem('tabelaDeTarefas', JSON.stringify(tabelaTarefas))
+const setTabelaTarefa = (tabela:Tabela) =>{
+    localStorage.setItem('tabelaDeTarefas', JSON.stringify(tabela))
 }
-
 
 function App() {
   
@@ -35,8 +34,10 @@ function App() {
   const [calendario, setCal] = useState(anoPresente)
 
   const addPontos = (p:number)=>{
-    setPontos(prevPontos => prevPontos + p)
-    localStorage.setItem('pontos',JSON.stringify(totalPontos))
+    const currPontos = totalPontos
+    const total = currPontos + p
+    localStorage.setItem('pontos',JSON.stringify(total))
+    setPontos(total)
   }  
   const subPontos = (p:number, r:string)=>{
     setPontos(prevPontos => prevPontos - p)
@@ -70,7 +71,6 @@ function App() {
           <PointsProvider value={{ totalPontos, addPontos, subPontos}}>
           <TabelasProvider value={{tabelaRecompensas:tabelaRecompensas,tabelaTarefas:tabelaTarefas,setTabelaRecompensa,setTabelaTarefa}}>
             <RouterProvider router={router}></RouterProvider>
-            
           </TabelasProvider>
           </PointsProvider>
           </CalendarioProvider>

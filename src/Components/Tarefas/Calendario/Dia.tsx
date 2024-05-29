@@ -6,20 +6,24 @@ import { Dia as DiaClas, Tarefa } from '../../../dataCaledario'
 import AddDailyTask from './AddDailyTask'
 import { CalendarioContext } from '../../../Context/CalendarioContext'
 import { PointsContext } from '../../../Context/PointsContext'
-
+import BackButtom from '../../BackButtom'
+import EarnedPoints from '../../EarnedPoints'
+import TarefaDia from './TarefaDia'
 
 function Dia() {
-  const [isShown, setIsShown] = useState(false)
-  const {editCalendario} = useContext(CalendarioContext)
-  const {addPontos} = useContext(PointsContext)
   
+  const {editCalendario} = useContext(CalendarioContext)
+  const {addPontos, totalPontos} = useContext(PointsContext)
   const {state} = useLocation() 
   const {mes, index} = state
+
+  const [isShown, setIsShown] = useState(false)
   const d = new DiaClas('')
   const [dia, setDia] = useState(d)
-  
+  const [pontos, setPontos] = useState(0)
+
   //destruturando state
-  let nome:string, tarefas:Tarefa[], totalPoints
+  let nome:string, tarefas:Tarefa[]
   if(dia){
     ({nome, tarefas} = dia)
     //totalPoints = dia.getTotalDayPoints()
@@ -42,17 +46,25 @@ function Dia() {
       setDia(newDia)
     }
     dia.setStatus()    
+    setPontos(totalPontos)
   },[state])
   
 
   //mudança na tarefa, mudança no dia, no mês, no ano, no calendário. 
   const handleTarefaChange = (t:Tarefa)=>{
+    
+    if(t.completa){
+      return
+    }
     dia.setStatus()
     t.setCompleta()
-    addPontos(parseInt(t.pontos))
+    
     const newDia = new DiaClas(dia.nome,tarefas,dia.comentario,dia.status)
     editCalendario(newDia, mes, index)
     setDia(newDia)
+
+    addPontos(parseInt(t.pontos))
+    return <EarnedPoints points={t.pontos}></EarnedPoints>
   }
 
   const handleTaskAdd = (newDia:DiaClas)=>{
@@ -63,21 +75,7 @@ function Dia() {
   const tList = tarefas! && tarefas.map((t:Tarefa,index) =>{
     if (t){
       return(
-
-          <li key={index} className='tarefa' >
-            <div className='flex justify-between'>
-                <div className='flex-col w-3/4 gap-2 '>
-                  <h2 className='text-2xl'>{t.nome} - </h2>
-                  <p className='pl-2'>{t.descricao}</p>
-                </div>
-                <div className='flex flex-col'>
-                  <h3>Pontos:{t.pontos}</h3>
-                  <h3 onClick={()=>handleTarefaChange(t)} className='w-8 h-8 bg-slate-100 place-self-end'>{t.completa && <img src='/checkmark.png'></img>}</h3>
-                </div>
-            </div>
-          </li>
-         
-      
+        <TarefaDia index={index} currTarefa={t} handleTarefaChange={handleTarefaChange}></TarefaDia>
       )
     }
   }) || null
@@ -85,12 +83,13 @@ function Dia() {
 
   return (
     <div className='w-full  h-full flex flex-col justify-between px-4 py-2' style={{position:'relative'}}>
-      <Link to={'/'} className=' top-5 left-5' style={{position:'absolute'}}>back</Link>
-      <div className=' self-center w-3/4 flex items-center justify-center border-b'>
+      <BackButtom></BackButtom>
+      <div className=' self-center w-3/4 flex items-center justify-center '>
         <h1 className='text-3xl text-center mb-1'> {nome!} {state.index+1} </h1>
+        <h2 className='tarefa-pontos-totais'> {pontos}</h2>
       </div>
 
-      <ul className='flex flex-col h-full mt-8 px-1 shadow'>
+      <ul className='flex flex-col h-full mt-8 p-1 shadow'>
         {tList}
       </ul>
       
@@ -98,9 +97,8 @@ function Dia() {
         <AddDailyTask d={setIsShown} display={isShown} dia={dia} mes={mes} index={index} aux={handleTaskAdd}></AddDailyTask>
       </div> 
 
-      <div className='flex w-full items-center justify-between mt-4 '>
-        <h2></h2>
-        <h2 onClick={()=>{setIsShown(prev=>!prev)}} className='button-alike px-1 py-0 w-1/6 text-center'>add task</h2>
+      <div className='flex w-full items-center justify-end mt-4 '>
+        <h2 onClick={()=>{setIsShown(prev=>!prev)}} className='button-alike  py-1  text-center'>nova tarefa</h2>
       </div>
 
     </div>

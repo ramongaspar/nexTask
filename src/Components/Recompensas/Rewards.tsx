@@ -34,7 +34,7 @@ function Rewards() {
             <div className='h-1/2'></div>
             <h2 className='h-1/2 w-full pb-4 flex items-end justify-center text-4xl'>{totalPontos}</h2>
           </div>
-          
+          <h2 className="button-alike w-11/12 rounded-lg text-center" ><Link to={'/historico'}> Historico  </Link></h2>
         </div>
         {rewardListEl}
         

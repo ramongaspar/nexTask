@@ -8,24 +8,28 @@ function DiasEl({dia,mes, idx, mesidx}:{dia:Dia,mes:string,idx:number, mesidx:nu
   const auxDate = `${idx + 1}/${mesidx}/2024`
   const partData = auxDate.split('/')
   const thisDate = new Date(parseInt(partData[2]), parseInt(partData[1]),parseInt(partData[0])+1)
-  const yesterdayOrTomorrow = (thisDate > currDate)
-  let bg = yesterdayOrTomorrow ? '#B5D99C' : '#E65F5C'
+ 
+  const today = (thisDate > currDate)
+  let bg = today ? '#B5D99C' : '#FFF'
+  
+  if(!today){
+    const status =  dia.status 
+    if(status){
+      switch(status){
+        case 'concluido':
+          bg = '#ffff82'
+          break;
+        case 'incompleto':
+          bg = '#F5F7DC'
+          break;
+        case 'nada':
+          bg ='#E65F5C'
+          break;
+        default:
+          break;
+      }
+  }
 
-  const status =  dia.status 
-  if(status){
-    switch(status){
-      case 'concluido':
-        bg = '#ffff82'
-        break;
-      case 'incompleto':
-        bg = '#F5F7DC'
-        break;
-      case 'nada':
-        bg ='#fff'
-        break;
-      default:
-        break;
-    }
   }
   return (
     <Link  style={{backgroundColor:bg}} className="border" to={`/tarefas/${mes}/${idx.toString()}`} state={{dia:dia, index:idx,mes:mes}}>

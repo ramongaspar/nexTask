@@ -1,6 +1,6 @@
 //Exibe o calendário.
 
-import { Outlet } from 'react-router-dom'
+import {  Outlet } from 'react-router-dom'
 
 function Tarefas() {
   return (
@@ -8,6 +8,7 @@ function Tarefas() {
         <div>
             <Outlet></Outlet>
         </div>
+        
     </div>
   )
 }

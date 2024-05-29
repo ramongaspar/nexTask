@@ -1,70 +1,20 @@
 *{
-font-family: "JetBrains Mono", monospace;
+    font-family: "JetBrains Mono", monospace;
   font-optical-sizing: auto;
   font-style: normal;
-  
 }
-
 
 body{
-color: #0F0326;;
+    color: #0F0326;;
 }
 
+/*          MAIN PAGE             */
 .main{
     margin: auto;
     height: 800px;
     width: 600px;
     background-color: #b5d99c;
-    
 }
-
-.shadow{
-    box-shadow: 0 4px 8px -6px #b5d99c;
-}
-
-.recompensas{
-    background-color: #E65F5C;
-}
-
-.recompensa{
-    background-color: #ffff82;
-}
-
-#calendario-dias{
-    background-color: #0F0326;
-    width: 100%;
-    height: 77%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    row-gap: 1.5px;
-    column-gap: 1.5px;
-}
-
-.button-alike{
-    padding: 0.5rem 1rem;
-    border: 1px solid black;
-    border-radius: 25px;
-    background-color: #E65F5C;
-    
-}
-.button-alike:hover{
-    cursor: pointer;
-    background-color: rgba(160,190,205,255)
-    
-}
-
-.tasks-grid{
-    background-color: rgba(160,190,205,255);
-    box-shadow: 0 4px 8px -6px rgba(133,162,175,255);
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-    row-gap: 0.2rem;
-    column-gap: 0.5rem;
-}
-
-
 .main-day{
     width: 100%; 
     height: 100%;
@@ -77,10 +27,162 @@ color: #0F0326;;
     background-color: #f7f702;
 }
 
+
+
+/*          RECOMPENSAS             */
+.recompensas{
+    background-color: #E65F5C;
+}
+
+.recompensa{
+    background-color: #ffff82;
+}
+
+
+
+/*          TAREFAS             */
+.tasks-grid{
+    background-color: rgba(160,190,205,255);
+    box-shadow: 0 4px 8px -6px rgba(133,162,175,255);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 0.2rem;
+    column-gap: 0.5rem;
+}
 .tarefa{
     background-color: #ffff82;
-    border-width: 1px;
+    border-radius: 2px;
     padding: 0.5rem;
     margin-bottom: 0.5rem
+}
+.tarefa-pontos-totais{
+    color: #0F0326;
+    position: absolute;
+    font-size: 1.1rem;
+    font-weight: 600;
+    top: 0.6rem;
+    right: 0.6rem;
+    border-radius: 10px;
+    padding: 0.3rem 0.7rem;
+    background-color: #F5F7DC;
+}
 
+/*CALENDARIO*/
+#calendario-dias{
+    background-color: #f2f2f2;
+    width: 100%;
+    height: 77%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 1.5px;
+    column-gap: 1.5px;
+}
+.calendario-mes-titulo{
+    width: 40%;
+    margin-bottom:0.5rem;
+    border-bottom: #0F0326 1px solid;
+    font-size: 1.875rem/* 30px */;
+    line-height: 2.25rem/* 36px */;
+    display: flex;
+    justify-content: space-between;
+}
+
+/*         PROFILE             */
+.profile-image, .profile-status{
+    border:#0F0326 4px solid;
+    background-color: #F5F7DC;
+}
+
+/*         CUSTOMIZAR             */
+.nav-customizar{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    font-size: 1.5rem/* 24px */;
+    line-height: 2rem/* 32px */;;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: #0F0326 2px solid;
+}
+
+.lista-items{
+    height: 80%;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.box-item{
+    background-color: #F5F7DC;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    border: 2px solid #0F0326;
+}
+
+/*          GERAIS             */
+.earned-points{
+    position: absolute;
+    opacity: 1;
+    top: 0.5rem;
+    right: 0.4rem;
+    transform: scale(0);
+    transition: opacity 0.5 ease-in-out, transform 0.5s ease-in-out;
+    z-index: 1;
+}
+.earned-points-true{
+    animation: explode 0.5 forwards;
+}
+
+.back-button{
+    position: absolute;
+    top: 0.5rem;
+    left: 0.4rem;
+}
+.back-button:hover{
+    cursor: pointer;
+}
+.button-alike{
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: #E65F5C;
+}
+.button-alike:hover{
+    cursor: pointer;
+    background-color:#F5F7DC;
+}
+
+.shadow{
+    box-shadow: 4px 4px 8px 4px #b5d99c;
+}
+
+.draggable-div{
+    background-color: #E65F5C;
+    border-radius: 10px;
+}
+.draggable{
+    top: 0.25rem;
+    left:0.25rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background-color: #f7f702;
+}
+
+
+@keyframes explode{
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(3);
+    }
 }
